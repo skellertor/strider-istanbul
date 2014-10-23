@@ -1,9 +1,12 @@
+'use strict';
+
 /* Functions for demonstration purposes only */
-var checkSomething = function(context, callback){
+function checkSomething(context, callback){
 	//Do something here, then call back
 	callback(true);
 };
-var doThings = function(callback){
+
+function doThings(callback){
 	callback(null);
 };
 
@@ -14,7 +17,7 @@ module.exports = {
 	//   job:    see strider-runner-core for a description of that object
 	//   context: currently only defines "dataDir"
 	//   cb(err, initializedPlugin)
-	init: function (config, job, context, cb) {
+  init: function (config, job, context, cb) {
 		return cb(null, {
 			// any extra env variables. Will be available during all phases
 			env: {},
@@ -54,6 +57,7 @@ module.exports = {
 						// positives.
 						return done(null, false);
 					}
+
 					doThings(function (err) {
 						done(err, true);
 					});
@@ -61,7 +65,6 @@ module.exports = {
 			},
 			deploy: 'echo "' + config.deploy + '"',
 			cleanup: 'echo "' + config.cleanup + '"'
-
 		});
 	},
 	// this is only used if there is _no_ plugin configuration for a

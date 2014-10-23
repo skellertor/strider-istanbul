@@ -27,7 +27,7 @@
     "webapp": "webapp.js",
     "icon": "icon.png",
     "config": {
-      "controller": "TemplateCtrl"
+      "controller": "TemplateController"
     }
   },
   "devDependencies": {
