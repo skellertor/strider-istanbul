@@ -10,19 +10,19 @@ var configDefaults = {
 };
 
 /*
-* $scope.configs, $scope.branch and $scope.pluginConfig, among others are available from the parent scope
-* */
+ * $scope.configs, $scope.branch and $scope.pluginConfig, among others are available from the parent scope
+ * */
 app.controller('TemplateController', ['$scope', function ($scope) {
-	$scope.saving = false;
+  $scope.saving = false;
 
-	$scope.$watch('configs[branch.name].template.config', function (value) {
-		$scope.config = value || configDefaults;
-	});
+  $scope.$watch('configs[branch.name].template.config', function (value) {
+    $scope.config = value || configDefaults;
+  });
 
-	$scope.save = function () {
-		$scope.saving = true;
-		$scope.pluginConfig('template', $scope.config, function () {
-			$scope.saving = false;
-		});
-	};
+  $scope.save = function () {
+    $scope.saving = true;
+    $scope.pluginConfig('template', $scope.config, function () {
+      $scope.saving = false;
+    });
+  };
 }]);

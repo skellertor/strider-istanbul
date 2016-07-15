@@ -4,7 +4,8 @@
   "description": "Plugin template for Strider CD",
   "main": "webapp.js",
   "scripts": {
-    "test": "mocha -R spec --recursive test"
+    "lint": "eslint config *.js",
+    "test": "npm run lint && mocha -R spec --recursive test"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,7 @@
   ],
   "author": "Kyle Newsome <kyle@bitwit.ca>",
   "license": "ISC",
-  "dependencies": {
-  },
+  "dependencies": {},
   "strider": {
     "type": "job",
     "id": "template",
@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^3.0.1",
     "mocha": "^2.4.5",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"
