@@ -2,6 +2,7 @@
   "name": "strider-template",
   "version": "2.0.0",
   "description": "Plugin template for Strider CD",
+  "homepage": "https://github.com/Strider-CD/strider-template",
   "main": "webapp.js",
   "scripts": {
     "lint": "eslint *.js config lib",
@@ -9,13 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bitwit/strider-template.git"
+    "url": "https://github.com/Strider-CD/strider-template.git"
   },
   "keywords": [
     "strider",
     "plugin",
     "template"
   ],
+  "engines": {
+    "node": ">=4.2"
+  },
   "author": "Strider Continuous Deployment <hello@stridercd.com>",
   "license": "MIT",
   "dependencies": {
