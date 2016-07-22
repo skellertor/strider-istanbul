@@ -1,18 +1,22 @@
 'use strict';
 
-var sinon = require('sinon');
-var chai = require('chai');
-var sinonChai = require('sinon-chai');
-
-var Worker = require('../worker.js');
-var WebApp = require('../webapp.js');
-
-var expect = chai.expect;
+const chai = require('chai');
+const expect = chai.expect;
+const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
 
 chai.use(sinonChai);
 
+const Worker = require('../worker.js');
+const WebApp = require('../webapp.js');
+
 describe('template worker test example', function () {
-  var work, io, context, config, job, exitCode;
+  let work;
+  let io;
+  let context;
+  let config;
+  let job;
+  let exitCode;
 
   function prepareWorker(done) {
     context = {};
@@ -56,7 +60,7 @@ describe('template worker test example', function () {
   });
 
   it('should set up the phase actions properly', function () {
-    var setup = work();
+    const setup = work();
     //environment returns a string
     expect(setup.environment).to.equal('echo "test message"');
     //prepare returns an object

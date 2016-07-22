@@ -1,7 +1,7 @@
 'use strict';
 
-var app = window.app;
-var configDefaults = {
+const app = window.app;
+const configDefaults = {
   environment: 'Hi from `environment`',
   prepare: 'Hi from `prepare`',
   test: 'Hi from `test`',

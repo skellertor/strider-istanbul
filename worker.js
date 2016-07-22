@@ -1,5 +1,7 @@
 'use strict';
 
+const debug = require('debug')('strider-template:worker');
+
 /* Functions for demonstration purposes only */
 function checkSomething(context, callback) {
   //Do something here, then call back
@@ -26,10 +28,10 @@ module.exports = {
       //   enumeration of the events. Emit plugin.[pluginid].myevent to
       //   communicate things up to the browser or to the webapp.
       listen: function (emitter, context) {
-        console.log(context);
+        debug(context);
         emitter.on('job.status.phase.done', function (id, data) {
-          var phase = data.phase;
-          console.log('the ' + phase + ' phase has completed');
+          const phase = data.phase;
+          debug(`the ${phase} phase has completed`);
           return true;
         });
       },
@@ -38,16 +40,16 @@ module.exports = {
       // or a fn(context, done(err, didrun))
 
       //string style
-      environment: 'echo "' + config.environment + '"',
+      environment: `echo "${config.environment}"`,
       //object style
       prepare: {
         command: 'echo',
-        args: ['"' + config.prepare + '"']
+        args: [`"${config.prepare}"`]
       },
       //function style (calling done is a MUST)
       test: function (context, done) {
         //this will show up in the terminal log as 'info'
-        console.log(config.test);
+        debug(config.test);
 
         //demonstration of how to perform async tasks, finishing with a call to done()
         checkSomething(context, function (shouldDoThings) {
@@ -64,8 +66,8 @@ module.exports = {
           });
         });
       },
-      deploy: 'echo "' + config.deploy + '"',
-      cleanup: 'echo "' + config.cleanup + '"'
+      deploy: `echo "${config.deploy}"`,
+      cleanup: `echo "${config.cleanup}"`
     });
   },
   // this is only used if there is _no_ plugin configuration for a
