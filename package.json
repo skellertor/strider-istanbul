@@ -27,8 +27,8 @@
   },
   "strider": {
     "type": "job",
-    "id": "template",
-    "title": "Plugin Template",
+    "id": "strider-istanbul",
+    "title": "Strider Istanbul",
     "worker": "worker.js",
     "webapp": "webapp.js",
     "icon": "icon.png",
