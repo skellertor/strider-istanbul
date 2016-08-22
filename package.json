@@ -32,9 +32,7 @@
     "worker": "worker.js",
     "webapp": "webapp.js",
     "icon": "icon.png",
-    "config": {
-      "controller": "TemplateController"
-    }
+    "config": true
   },
   "devDependencies": {
     "chai": "^3.5.0",
