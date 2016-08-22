@@ -27,7 +27,7 @@ module.exports = {
           if(err){
             self.env.error = true;
           }
-          fs.readFile('mocha-output.json', function (err, data) {
+          fs.readFile('./mocha-output.json', function (err, data) {
             console.log('DATA', data);
             var jsonObject = JSON.parse(data);
             self.env.test_results = jsonObject;
