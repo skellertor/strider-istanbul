@@ -18,10 +18,6 @@ module.exports = {
         error: false
       },
       listen: function (emitter, context) {
-        debug(context);
-        emitter.on('job.status.phase.done', function (id, data) {
-          return true;
-        });
       },
       test: function (context, done) {
         var self = this;
@@ -31,7 +27,7 @@ module.exports = {
           if(err){
             self.env.error = true;
           }
-          fs.readFile('./mocha-output.json', function (err, data) {
+          fs.readFile('mocha-output.json', function (err, data) {
             var jsonObject = JSON.parse(data);
             console.log('DATA', jsonObject);
             self.env.test_results = jsonObject;
