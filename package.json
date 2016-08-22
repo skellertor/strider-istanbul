@@ -6,7 +6,7 @@
   "main": "webapp.js",
   "scripts": {
     "lint": "eslint *.js config lib",
-    "test": "npm run lint && istanbul cover node_modules/mocha/bin/_mocha --recursive test"
+    "test": "istanbul cover -x '**/node_modules/**' _mocha -- -R mocha-spec-json-reporter"
   },
   "repository": {
     "type": "git",
@@ -39,8 +39,9 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.1.1",
-    "istanbul": "^0.4.4",
+    "istanbul": "^0.4.5",
     "mocha": "^2.4.5",
+    "mocha-spec-json-reporter": "0.0.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"
   }
