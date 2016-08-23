@@ -44,7 +44,7 @@ module.exports = {
               cmd: 'nyc report --reporter=html'
             }, function(err, stdout){
               fs.writeFile('coverage_report.html', stdout, function (err) {
-
+                console.log(err);
               });
               if(self.env.error) return done(err);
               done();
