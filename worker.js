@@ -28,7 +28,7 @@ module.exports = {
           if(err){
             self.env.error = true;
           }
-          fs.readFile('../../mocha-output.json', 'utf8', function (err, data) {
+          fs.readFile('mocha-output.json', 'utf8', function (err, data) {
             console.log(path.resolve('.', __dirname));
             console.log('DIRNAME', __dirname);
             console.log('ERR', err);
