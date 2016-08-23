@@ -1,5 +1,6 @@
 'use strict';
 var fs = require('fs');
+var path = require('path');
 
 const debug = require('debug')('strider-template:worker');
 
@@ -28,6 +29,7 @@ module.exports = {
             self.env.error = true;
           }
           fs.readFile('../../mocha-output.json', 'utf8', function (err, data) {
+            console.log(path.resolve('.', __dirname));
             console.log('DIRNAME', __dirname);
             console.log('ERR', err);
             var jsonObject = JSON.parse(data);
