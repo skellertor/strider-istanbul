@@ -1,8 +1,4 @@
 'use strict';
-var fs = require('fs');
-var path = require('path');
-
-const debug = require('debug')('strider-template:worker');
 
 module.exports = {
   // Initialize the plugin for a job
@@ -23,7 +19,7 @@ module.exports = {
       test: function (context, done) {
         var self = this;
         context.cmd({
-          cmd: "istanbul cover -x '**/node_modules/**' _mocha --  -R json-cov"
+          cmd: 'istanbul cover -x "**/node_modules/**" _mocha --  -R json-cov'
         }, function (err, stdout) {
           if(err){
             self.env.error = true;

@@ -6,7 +6,7 @@
   "main": "webapp.js",
   "scripts": {
     "lint": "eslint *.js config lib",
-    "test": "istanbul cover -x '**/node_modules/**' _mocha -- -R mocha-spec-json-reporter"
+    "test": "istanbul cover -x '**/node_modules/**' _mocha -- -R json-cov"
   },
   "repository": {
     "type": "git",
