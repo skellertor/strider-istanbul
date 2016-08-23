@@ -1,5 +1,7 @@
 'use strict';
 var fs = require('fs');
+var path = require('path');
+var location = __dirname;
 
 module.exports = {
   init: function (config, job, context, cb) {
@@ -43,7 +45,7 @@ module.exports = {
             context.cmd({
               cmd: 'nyc report --reporter=html'
             }, function(err, stdout){
-              fs.writeFile('coverage_report.html', stdout, function (err) {
+              fs.writeFile(location + '/coverage_report.html', stdout, function (err) {
                 console.log(err);
               });
               if(self.env.error) return done(err);
