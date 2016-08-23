@@ -23,20 +23,14 @@ module.exports = {
       test: function (context, done) {
         var self = this;
         context.cmd({
-          cmd: "istanbul cover -x '**/node_modules/**' _mocha --  -R mocha-spec-json-reporter"
+          cmd: "istanbul cover -x '**/node_modules/**' _mocha --  -R json-cov"
         }, function (err, stdout) {
           if(err){
             self.env.error = true;
           }
-          fs.readFile('../../mocha-output.json', 'utf8', function (err, data) {
-            console.log(path.relative(__dirname, 'mocha-output.json'));
-            console.log('DIRNAME', __dirname);
-            console.log('ERR', err);
-            var jsonObject = JSON.parse(data);
-            self.env.test_results = jsonObject;
-            if(self.env.error) return done(err);
-            done();
-          });
+          console.log(stdout);
+          if(self.env.error) return done(err);
+          done();
         });
       }
     });
