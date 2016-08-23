@@ -11,7 +11,7 @@ module.exports = {
       test: function (context, done) {
         var self = this;
         context.cmd({
-          cmd: 'nyc --reporter=none -all _mocha -R json-cov'
+          cmd: 'nyc --reporter=none --all _mocha -R json-cov'
         }, function (err, stdout) {
           console.log(stdout);
           if(err){
