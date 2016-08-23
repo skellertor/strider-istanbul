@@ -12,11 +12,22 @@ module.exports = {
       test: function (context, done) {
         var self = this;
         context.cmd({
-          cmd: 'nyc _mocha'
+          cmd: 'nyc --reporter=none _mocha -R json-cov'
         }, function (err, stdout) {
           if(err){
             self.env.error = true;
           }
+          var beginOfJson = stdout.indexOf('{');
+          var jsonString = stdout.substr(beginOfJson, stdout.length);
+          var report;
+          try {
+            report = JSON.parse(jsonString);
+          } catch (e) {
+            return done(new Error('coverage report not json'));
+          }
+          job.test_results = {
+            stats: report.stats
+          };
           context.cmd({
             cmd: 'nyc report --reporter=text-summary'
           }, function (err, stdout) {
