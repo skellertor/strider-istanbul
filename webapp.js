@@ -22,9 +22,6 @@ module.exports = {
   //   req.pluginConfig() -> get the config for this plugin
   //   req.pluginConfig(config, cb(err)) -> set the config for this plugin
   routes: function (app, context) {
-    app.get('/report', function (req, res) {
-        res.json({report: 'hello'});
-    });
     debug(context);
   },
   // Define global routes
@@ -33,6 +30,9 @@ module.exports = {
   //   req.user.account_level can be used for authorization
   //      0 - anonymous, 1 - authed, 2 - admin / collaborator
   globalRoutes: function (app, context) {
+    app.get('/report', function (req, res) {
+      res.json({report: 'hello'});
+    });
     debug(context);
   },
   // Listen for global events
