@@ -1,4 +1,6 @@
 'use strict';
+var fs = require('fs');
+
 module.exports = {
   init: function (config, job, context, cb) {
     return cb(null, {
@@ -38,8 +40,15 @@ module.exports = {
             var valid  = stdout.substr(index, stdout.length);
             valid = valid.replace(/=/g, '');
             job.coverage_results = valid;
-            if(self.env.error) return done(err);
-            done();
+            context.cmd({
+              cmd: 'nyc report --reporter=html'
+            }, function(err, stdout){
+              fs.writeFile('coverage_report.html', stdout, function (err) {
+
+              });
+              if(self.env.error) return done(err);
+              done();
+            });
           });
         });
       }
