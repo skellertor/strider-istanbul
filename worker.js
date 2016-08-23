@@ -14,6 +14,7 @@ module.exports = {
         context.cmd({
           cmd: 'nyc --reporter=none _mocha -R json-cov'
         }, function (err, stdout) {
+          console.log(stdout);
           if(err){
             self.env.error = true;
           }
