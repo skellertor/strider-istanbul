@@ -4,7 +4,6 @@ module.exports = {
     return cb(null, {
       // any extra env variables. Will be available during all phases
       env: {
-        test_results: {},
         error: false
       },
       listen: function (emitter, context) {
@@ -12,7 +11,7 @@ module.exports = {
       test: function (context, done) {
         var self = this;
         context.cmd({
-          cmd: 'nyc --reporter=none _mocha -R json-cov'
+          cmd: 'nyc --reporter=none -all _mocha -R json-cov'
         }, function (err, stdout) {
           console.log(stdout);
           if(err){
