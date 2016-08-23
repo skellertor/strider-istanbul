@@ -1,12 +1,5 @@
 'use strict';
-
 module.exports = {
-  // Initialize the plugin for a job
-  //   config: the config for this job, made by extending the DB config
-  //           with any flat-file config
-  //   job:    see strider-runner-core for a description of that object
-  //   context: currently only defines "dataDir"
-  //   cb(err, initializedPlugin)
   init: function (config, job, context, cb) {
     return cb(null, {
       // any extra env variables. Will be available during all phases
@@ -19,14 +12,24 @@ module.exports = {
       test: function (context, done) {
         var self = this;
         context.cmd({
-          cmd: 'istanbul cover -x "**/node_modules/**" _mocha --  -R json-cov'
+          cmd: 'nyc _mocha'
         }, function (err, stdout) {
           if(err){
             self.env.error = true;
           }
-          console.log(stdout);
-          if(self.env.error) return done(err);
-          done();
+          context.cmd({
+            cmd: 'nyc report --reporter=text-summary'
+          }, function (err, stdout) {
+            if(err){
+              self.env.error = true;
+            }
+            var index = stdout.indexOf('=');
+            var valid  = stdout.substr(index, stdout.length);
+            valid = valid.replace(/=/g, '');
+            job.coverage_results = valid;
+            if(self.env.error) return done(err);
+            done();
+          });
         });
       }
     });
