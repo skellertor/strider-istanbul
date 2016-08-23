@@ -28,6 +28,7 @@
   "strider": {
     "type": "job",
     "id": "strider-istanbul",
+    "type": "job",
     "title": "Strider Istanbul",
     "worker": "worker.js",
     "webapp": "webapp.js",
