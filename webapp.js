@@ -1,6 +1,7 @@
 'use strict';
 var request = require('request');
 var fs = require('fs');
+var Job = require('../../lib/models/job');
 
 
 module.exports = {
@@ -14,6 +15,9 @@ module.exports = {
       var hostName = req.get('Host');
       var project = org + '/' + repo;
       var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
+      Job.find({}).toArray(function (err, docs) {
+        console.log(docs);
+      });
       request({url: jobsEndpoint}, function (er, response, body) {
         var myCookie = request.cookie(response.headers['set-cookie'][0]);
         var cookieJar = request.jar();
