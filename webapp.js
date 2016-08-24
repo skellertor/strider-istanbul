@@ -23,7 +23,9 @@ module.exports = {
       // var cookie = request.cookie(setCookieStr);
       // j.setCookie(cookie, jobsEndpoint);
       request({url: jobsEndpoint}, function (err, response, body) {
-        res.send(body);
+        request(jobsEndpoint, function(err, response, body){
+          res.send(body);
+        });
       });
 
       // var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/*/coverage/index.html';
