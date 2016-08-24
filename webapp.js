@@ -1,5 +1,6 @@
 'use strict';
 var request = require('request');
+var fs = require('fs');
 
 module.exports = {
   config: {},
@@ -11,9 +12,11 @@ module.exports = {
       var protocol = req.protocol;
       var hostName = req.get('Host');
       request(protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs', function (err, response, body) {
-        var returnObject = (typeof body);
-        var url = './.strider/data/'+ org + '-' + repo + '-' + branch;
-        res.json({params: returnObject});
+        var latestJobId = JSON.parse(body)[0]._id;
+        var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + latestJobId + '/coverage/index.html';
+        fs.readFile(coveragLocation, 'utf8', function (err, data) {
+          res.render(data);
+        });
       });
     });
   },
