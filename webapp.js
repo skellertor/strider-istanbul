@@ -13,7 +13,10 @@ module.exports = {
       var hostName = req.get('Host');
       var project = org + '/' + repo;
       var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/*/coverage/index.html';
-      res.render(coveragLocation);
+      fs.readFile(coveragLocation, 'utf8', function (err, data) {
+        console.log(data, err)
+        res.render(data);
+      });
       // res.json({yes: app});
       // var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
       // console.log('BODY', body);
