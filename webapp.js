@@ -19,6 +19,7 @@ module.exports = {
       for(var value in req.session.cookie);{
         setCookieStr += (value + '=' + req.session.cookie[value] + '; ');
       }
+      console.log('SETCOOKIE',  setCookieStr);
       var cookie = request.cookie(setCookieStr);
       j.setCookie(cookie, jobsEndpoint);
       request({url: jobsEndpoint, jar: j}, function () {
