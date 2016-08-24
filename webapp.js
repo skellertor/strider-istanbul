@@ -12,7 +12,7 @@ module.exports = {
       var protocol = req.protocol;
       var hostName = req.get('Host');
       var project = org + '/' + repo;
-      var jobId = context.strider_istanbul._id;
+      var jobId = context.strider_istanbul;
       var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + jobId + '/coverage/index.html';
       // res.render(coveragLocation);
       res.json({yes: context});
