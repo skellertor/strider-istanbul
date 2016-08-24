@@ -14,7 +14,7 @@ module.exports = {
       var hostName = req.get('Host');
       var project = org + '/' + repo;
       var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/*/coverage/index.html';
-      res.json({user: req.user});
+      res.json({user: req});
       // fs.readFile(coveragLocation, 'utf8', function (err, data) {
       //   console.log()
       //   res.render(data);
