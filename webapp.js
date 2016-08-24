@@ -1,6 +1,5 @@
 'use strict';
 var request = require('request');
-var j = request.jar();
 var fs = require('fs');
 
 
@@ -15,16 +14,11 @@ module.exports = {
       var hostName = req.get('Host');
       var project = org + '/' + repo;
       var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
-      var setCookieStr = '';
-      for(var value in req.session.cookie);{
-        // setCookieStr += (value + '=' + req.session.cookie[value] + '; ');
-        console.log(value);
-      }
-      console.log('SETCOOKIE',  setCookieStr);
-      var cookie = request.cookie(setCookieStr);
-      j.setCookie(cookie, jobsEndpoint);
-      request({url: jobsEndpoint, jar: j}, function () {
-        request(jobsEndpoint, function(err, response, body){
+      request({url: jobsEndpoint}, function (er, response, body) {
+        var myCookie = request.cookie(res.headers['set-cookie'][0]);
+        var cookieJar = request.jar();
+        cookieJar.setCookie(myCookie, jobsEndpoint);
+        request({url: jobsEndpoint, jar: cookieJar}, function(err, response, body){
           res.send(body);
         });
       });
