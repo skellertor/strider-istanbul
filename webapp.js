@@ -15,7 +15,7 @@ module.exports = {
       var jobId = context.strider_istanbul;
       var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + jobId + '/coverage/index.html';
       // res.render(coveragLocation);
-      res.json({yes: context});
+      res.json({yes: app});
       // var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
       // console.log('BODY', body);
       // var latestJobId = JSON.parse(body)[0];
