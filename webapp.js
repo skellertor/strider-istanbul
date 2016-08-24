@@ -14,7 +14,7 @@ module.exports = {
       var project = org + '/' + repo;
       var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + '/coverage/index.html';
       // res.render(coveragLocation);
-      res.json({yes: context.models});
+      res.json({yes: context});
       // var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
       // console.log('BODY', body);
       // var latestJobId = JSON.parse(body)[0];
@@ -23,6 +23,12 @@ module.exports = {
   globalRoutes: function (app, context) {
     app.get('/report', function (req, res) {
       res.json({context: context});
+    });
+  },
+  listen: function(io, context) {
+    io.on('plugin.strider-istanbul.done', function (jobId) {
+      console.log('STRIDER DONE');
+      context.job_id = jobId;
     });
   }
 };
