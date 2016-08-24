@@ -15,7 +15,12 @@ module.exports = {
       var hostName = req.get('Host');
       var project = org + '/' + repo;
       var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
-      j.setCookie(req.session.cookie, jobsEndpoint);
+      var setCookieStr = '';
+      for(var value in req.session.cookie);{
+        setCookieStr += (value + '=' + req.session.cookie[value] + '; ');
+      }
+      var cookie = request.cookie(setCookieStr);
+      j.setCookie(cookie, jobsEndpoint);
       request({url: jobsEndpoint, jar: j}, function (err, response, body) {
         res.send(body);
       });
