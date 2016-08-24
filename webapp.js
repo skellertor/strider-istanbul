@@ -1,5 +1,6 @@
 'use strict';
 var request = require('request');
+var j = request.jar();
 var fs = require('fs');
 
 
@@ -13,8 +14,14 @@ module.exports = {
       var protocol = req.protocol;
       var hostName = req.get('Host');
       var project = org + '/' + repo;
-      var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/*/coverage/index.html';
-      res.json({user: req.session});
+      var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
+      j.setCookie(req.session.cookie, jobsEndpoint);
+      request({url: jobsEndpoint, jar: j}, function (err, response, body) {
+        res.send(body);
+      });
+
+      // var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/*/coverage/index.html';
+      // res.json({user: req.session});
       // fs.readFile(coveragLocation, 'utf8', function (err, data) {
       //   console.log()
       //   res.render(data);
