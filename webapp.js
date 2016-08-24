@@ -2,6 +2,7 @@
 var request = require('request');
 var fs = require('fs');
 
+
 module.exports = {
   config: {},
   routes: function (app, context) {
@@ -13,10 +14,11 @@ module.exports = {
       var hostName = req.get('Host');
       var project = org + '/' + repo;
       var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/*/coverage/index.html';
-      fs.readFile(coveragLocation, 'utf8', function (err, data) {
-        console.log(data, err)
-        res.render(data);
-      });
+      res.json({user: req.user});
+      // fs.readFile(coveragLocation, 'utf8', function (err, data) {
+      //   console.log()
+      //   res.render(data);
+      // });
       // res.json({yes: app});
       // var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
       // console.log('BODY', body);
