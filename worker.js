@@ -1,7 +1,5 @@
 'use strict';
-var fs = require('fs');
-var path = require('path');
-var location = __dirname;
+var request = require('request');
 
 module.exports = {
   init: function (config, job, context, cb) {
@@ -45,6 +43,7 @@ module.exports = {
             context.cmd({
               cmd: 'nyc report --reporter=html'
             }, function(err, stdout){
+              console.log('JOB', job);
               if(self.env.error) return done(err);
               done();
             });

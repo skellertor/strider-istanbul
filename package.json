@@ -23,12 +23,12 @@
   "author": "Strider Continuous Deployment <hello@stridercd.com>",
   "license": "MIT",
   "dependencies": {
-    "debug": "^2.2.0"
+    "debug": "^2.2.0",
+    "request": "^2.74.0"
   },
   "strider": {
     "type": "job",
     "id": "strider-istanbul",
-    "type": "job",
     "title": "Strider Istanbul",
     "worker": "worker.js",
     "webapp": "webapp.js",
