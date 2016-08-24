@@ -12,7 +12,8 @@ module.exports = {
       var protocol = req.protocol;
       var hostName = req.get('Host');
       request(protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs', function (err, response, body) {
-        var latestJobId = JSON.parse(body)[0]._id;
+        var latestJobId = JSON.parse(body)[0];
+        console.log('LATEST',latestJobId);
         var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + latestJobId + '/coverage/index.html';
         res.render(coveragLocation);
       });
