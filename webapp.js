@@ -15,7 +15,7 @@ module.exports = {
       var hostName = req.get('Host');
       var project = org + '/' + repo;
       var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
-      Job.find({}).toArray(function (err, docs) {
+      Job.find({},function (err, docs) {
         console.log(docs);
       });
       request({url: jobsEndpoint}, function (er, response, body) {
