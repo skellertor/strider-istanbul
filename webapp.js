@@ -11,12 +11,10 @@ module.exports = {
       var branch = req.body.branch;
       var protocol = req.protocol;
       var hostName = req.get('Host');
-      var jobModel = context.models.Job;
       var project = org + '/' + repo;
-      jobModel.find({project: project}).sort({finished: -1}).toArray(function (err, docs) {
-        var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + docs[0]_.id + '/coverage/index.html';
-        res.render(coveragLocation);
-      });
+      var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + docs[0]_.id + '/coverage/index.html';
+      // res.render(coveragLocation);
+      res.json({yes: context.models});
       // var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
       // console.log('BODY', body);
       // var latestJobId = JSON.parse(body)[0];
