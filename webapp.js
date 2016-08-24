@@ -14,9 +14,7 @@ module.exports = {
       request(protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs', function (err, response, body) {
         var latestJobId = JSON.parse(body)[0]._id;
         var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + latestJobId + '/coverage/index.html';
-        fs.readFile(coveragLocation, 'utf8', function (err, data) {
-          res.render(data);
-        });
+        res.render(coveragLocation);
       });
     });
   },
