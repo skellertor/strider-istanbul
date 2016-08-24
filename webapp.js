@@ -15,7 +15,7 @@ module.exports = {
       var hostName = req.get('Host');
       var project = org + '/' + repo;
       var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
-      Job.find({project: project}).sort({finished: -1},function (err, docs) {
+      Job.find({$query: {project: project}, $orderby: {finished: -1}}, function(err, docs){
         var id = docs[0]._id;
         var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage/index.html';
         fs.readFile(coveragLocation, 'utf8', function (err, data) {
