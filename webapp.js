@@ -17,7 +17,8 @@ module.exports = {
       var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
       var setCookieStr = '';
       for(var value in req.session.cookie);{
-        setCookieStr += (value + '=' + req.session.cookie[value] + '; ');
+        // setCookieStr += (value + '=' + req.session.cookie[value] + '; ');
+        console.log(value);
       }
       console.log('SETCOOKIE',  setCookieStr);
       var cookie = request.cookie(setCookieStr);
