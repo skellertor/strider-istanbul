@@ -45,10 +45,6 @@ module.exports = {
             context.cmd({
               cmd: 'nyc report --reporter=html'
             }, function(err, stdout){
-              console.log('STDOUT', stdout);
-              fs.writeFile(location + '/coverage_report.html', stdout, function (err) {
-                console.log(err);
-              });
               if(self.env.error) return done(err);
               done();
             });
