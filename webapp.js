@@ -3,7 +3,7 @@
 module.exports = {
   config: {},
   routes: function (app, context) {
-    app.get('/report', function (app, context) {
+    app.get('/report', function (req, res) {
       res.json({context: context});
     });
   },
