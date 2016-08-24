@@ -15,7 +15,7 @@ module.exports = {
       var project = org + '/' + repo;
       var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
       request({url: jobsEndpoint}, function (er, response, body) {
-        var myCookie = request.cookie(res.headers['set-cookie'][0]);
+        var myCookie = request.cookie(response.headers['set-cookie'][0]);
         var cookieJar = request.jar();
         cookieJar.setCookie(myCookie, jobsEndpoint);
         request({url: jobsEndpoint, jar: cookieJar}, function(err, response, body){
