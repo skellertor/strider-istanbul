@@ -4,7 +4,7 @@ module.exports = {
   config: {},
   globalRoutes: function (app) {
     app.get('/report', function (req, res) {
-      res.json({dir: __dir});
+      res.json({dir: __dirname});
     });
   }
 };
