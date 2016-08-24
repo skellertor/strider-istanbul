@@ -8,7 +8,7 @@ module.exports = {
     app.get('/report', function (req, res) {
       var org = req.params.org;
       var repo = req.params.repo;
-      var branch = req.body.branch;
+      var branch = req.query.branch;
       var protocol = req.protocol;
       var hostName = req.get('Host');
       var project = org + '/' + repo;
