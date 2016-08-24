@@ -15,24 +15,25 @@ module.exports = {
       var hostName = req.get('Host');
       var project = org + '/' + repo;
       var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
-      Job.find({},function (err, docs) {
-        console.log(docs);
-      });
-      request({url: jobsEndpoint}, function (er, response, body) {
-        var myCookie = request.cookie(response.headers['set-cookie'][0]);
-        var cookieJar = request.jar();
-        cookieJar.setCookie(myCookie, jobsEndpoint);
-        request({url: jobsEndpoint, jar: cookieJar}, function(err, response, body){
-          res.send(body);
+      Job.find({project: project},function (err, docs) {
+        var id = docs[0]._id;
+        var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage/index.html';
+        fs.readFile(coveragLocation, 'utf8', function (err, data) {
+          console.log(data);
+          res.render(data);
         });
       });
-
-      // var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/*/coverage/index.html';
-      // res.json({user: req.session});
-      // fs.readFile(coveragLocation, 'utf8', function (err, data) {
-      //   console.log()
-      //   res.render(data);
+      // request({url: jobsEndpoint}, function (er, response, body) {
+      //   var myCookie = request.cookie(response.headers['set-cookie'][0]);
+      //   var cookieJar = request.jar();
+      //   cookieJar.setCookie(myCookie, jobsEndpoint);
+      //   request({url: jobsEndpoint, jar: cookieJar}, function(err, response, body){
+      //     res.send(body);
+      //   });
       // });
+
+      // res.json({user: req.session});
+
       // res.json({yes: app});
       // var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
       // console.log('BODY', body);
