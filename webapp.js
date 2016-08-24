@@ -4,7 +4,7 @@ module.exports = {
   config: {},
   routes: function (app, context) {
     app.get('/report', function (req, res) {
-      res.json({context: context});
+      res.json({project: req.project});
     });
   },
   globalRoutes: function (app, context) {
