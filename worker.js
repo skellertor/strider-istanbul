@@ -1,5 +1,4 @@
 'use strict';
-var request = require('request');
 
 module.exports = {
   init: function (config, job, context, cb) {
@@ -8,14 +7,11 @@ module.exports = {
       env: {
         error: false
       },
-      listen: function (emitter, context) {
-      },
       test: function (context, done) {
         var self = this;
         context.cmd({
           cmd: 'nyc --reporter=none --all _mocha -R json-cov'
         }, function (err, stdout) {
-          console.log(stdout);
           if(err){
             self.env.error = true;
           }
@@ -43,7 +39,6 @@ module.exports = {
             context.cmd({
               cmd: 'nyc report --reporter=html'
             }, function(err, stdout){
-              console.log('JOB', job);
               if(self.env.error) return done(err);
               done();
             });

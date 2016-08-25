@@ -1,8 +1,8 @@
 {
   "name": "strider-istanbul",
-  "version": "2.0.0",
-  "description": "Plugin template for Strider CD",
-  "homepage": "https://github.com/Strider-CD/strider-template",
+  "version": "1.0.0",
+  "description": "Test Plugin for Strider-CD that uses istanbul, via nyc",
+  "homepage": "https://github.com/skellertor/strider-istanbul",
   "main": "webapp.js",
   "scripts": {
     "lint": "eslint *.js config lib",
@@ -10,22 +10,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Strider-CD/strider-template.git"
+    "url": "https://github.com/skellertor/strider-istanbul.git"
   },
   "keywords": [
     "strider",
     "plugin",
-    "template"
+    "test"
   ],
   "engines": {
     "node": ">=4.2"
   },
-  "author": "Strider Continuous Deployment <hello@stridercd.com>",
+  "author": "skellertor",
   "license": "MIT",
   "dependencies": {
     "debug": "^2.2.0",
-    "ncp": "^2.0.0",
-    "request": "^2.74.0",
     "underscore": "^1.8.3"
   },
   "strider": {

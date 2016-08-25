@@ -78,7 +78,7 @@ module.exports = {
   },
   globalRoutes: function (app, context) {
     app.get('/report', function (req, res) {
-      res.json({context: context});
+      res.json({status: 'not implemented'});
     });
   }
 };
