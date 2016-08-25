@@ -23,7 +23,7 @@ module.exports = {
         var id = docs[0]._id;
         var home = process.env.HOME;
         var coverageLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage';
-        fs.readdir(coverageLocation, 'utf8', function (err, file) {
+        fs.readdir(coverageLocation, function (err, file) {
           res.send(file);
         });
       });
