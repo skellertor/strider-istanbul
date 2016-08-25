@@ -19,7 +19,7 @@ module.exports = {
         limit: 1,
         sort: [['finished', 'desc']]
       };
-      Job.find({ project: project}, options, function(err, docs){
+      Job.find({ project: project, archived: null}, options, function(err, docs){
         var id = docs[0]._id;
         var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage/index.html';
         fs.readFile(coveragLocation, 'utf8', function (err, data) {
