@@ -28,9 +28,9 @@ module.exports = {
           var promises = [];
           var valid = _.map(file, function (item) {
             var index = item.indexOf('.');
-            if(index !== -1){
+            if (index !== -1) {
               var extension = item.substr(index, item.length);
-              if( extension === 'js' || extension === 'html' || extension === 'css') {
+              if (extension === 'js' || extension === 'html' || extension === 'css') {
                 return item;
               } else {
                 return;
@@ -39,35 +39,37 @@ module.exports = {
               return;
             }
           });
-          _.each(valid, function (item) {
-            var temp = (function (src) {
-              return new Promise(function (resolve, reject) {
-                fs.readFile(src, function (err, data) {
-                  var returnData = '';
-                  switch(extension){
-                    case 'js':
-                      returnData = '<script>' + data + '</script>';
-                      break;
-                    case 'css':
-                      returnData = '<style>' + data + '</style>';
-                      break;
-                    default:
-                      returnData = data;
-                  }
-                  resolve(returnData);
-                });
-              });
-            })(item);
-            promises.push(temp);
-          });
-          Promise.all(promises).then(function(finalStrings){
-            var fileStrings = '';
-            _.each(finalStrings, function (item) {
-              fileStrings += item;
-            });
-            res.send(fileStrings);
-          });
+          res.send(valid);
         });
+        //   _.each(valid, function (item) {
+        //     var temp = (function (src) {
+        //       return new Promise(function (resolve, reject) {
+        //         fs.readFile(src, function (err, data) {
+        //           var returnData = '';
+        //           switch(extension){
+        //             case 'js':
+        //               returnData = '<script>' + data + '</script>';
+        //               break;
+        //             case 'css':
+        //               returnData = '<style>' + data + '</style>';
+        //               break;
+        //             default:
+        //               returnData = data;
+        //           }
+        //           resolve(returnData);
+        //         });
+        //       });
+        //     })(item);
+        //     promises.push(temp);
+        //   });
+        //   Promise.all(promises).then(function(finalStrings){
+        //     var fileStrings = '';
+        //     _.each(finalStrings, function (item) {
+        //       fileStrings += item;
+        //     });
+        //     res.send(fileStrings);
+        //   });
+        // });
       });
       // request({url: jobsEndpoint}, function (er, response, body) {
       //   var myCookie = request.cookie(response.headers['set-cookie'][0]);
