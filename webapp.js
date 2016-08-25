@@ -37,6 +37,8 @@ module.exports = {
             }
           });
           _.each(valid, function (item) {
+            var index = item.indexOf('.');
+            var extension = item.substr(index, item.length);
             var temp = (function (src) {
               return new Promise(function (resolve, reject) {
                 fs.readFile(src, function (err, data) {
