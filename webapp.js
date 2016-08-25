@@ -2,14 +2,11 @@
 var request = require('request');
 var fs = require('fs');
 var Job = require('../../lib/models/job');
-var location = __dirname;
-
 
 module.exports = {
   config: {},
   routes: function (app, context) {
     app.get('/report', function (req, res) {
-      console.log('Locatoin', location);
       var org = req.params.org;
       var repo = req.params.repo;
       var branch = req.query.branch;
@@ -23,7 +20,8 @@ module.exports = {
       };
       Job.find({ project: project, archived: null}, options, function(err, docs){
         var id = docs[0]._id;
-        var coveragLocation = '~/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage/index.html';
+        var home = process.env.HOME;
+        var coveragLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage/index.html';
         fs.readFile(coveragLocation, 'utf8', function (err, data) {
           console.log(data, err);
           res.send(data);
