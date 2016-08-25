@@ -31,11 +31,9 @@ module.exports = {
             var index = item.indexOf('.');
             if (index !== -1) {
               var extension = item.substr(index, item.length);
-              valid.push(extension);
-
-              // if (extension === 'js' || extension === 'html' || extension === 'css') {
-              //   valid.push(item);
-              // }
+              if (extension === '.js' || extension === '.html' || extension === '.css') {
+                valid.push(item);
+              }
             }
           });
           res.send(valid);
