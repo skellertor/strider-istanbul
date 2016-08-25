@@ -66,8 +66,8 @@ module.exports = {
               fileStrings += item;
             });
             var anchor = /<a[\s]+[^>]*?href[\s]?=[\s\"\']*(.*?)[\"\']*.*?>([^<]+|.*?)?<\/a>/ig;
-            fileStrings.replace(anchor, '<p>Test</p>');
-            res.send(fileStrings);
+            var final = fileStrings.replace(anchor, '<p>Test</p>');
+            res.send(final);
           });
         });
       });
