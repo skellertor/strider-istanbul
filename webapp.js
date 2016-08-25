@@ -31,10 +31,12 @@ module.exports = {
             var index = item.indexOf('.');
             if (index !== -1) {
               var extension = item.substr(index, item.length);
-              if (extension === 'js' || extension === 'html' || extension === 'css') {
-                valid.push(item);
-              } 
-            } 
+              valid.push(item);
+
+              // if (extension === 'js' || extension === 'html' || extension === 'css') {
+              //   valid.push(item);
+              // } 
+            }
           });
           res.send(valid);
         });
