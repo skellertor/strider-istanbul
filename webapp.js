@@ -12,10 +12,8 @@ module.exports = {
       var org = req.params.org;
       var repo = req.params.repo;
       var branch = req.query.branch;
-      var protocol = req.protocol;
-      var hostName = req.get('Host');
+      var branchresult = req.query.branchresult;
       var project = org + '/' + repo;
-      var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
       var options = {
         limit: 1,
         sort: [['finished', 'desc']]
@@ -23,7 +21,7 @@ module.exports = {
       Job.find({ project: project, archived: null}, options, function(err, docs){
         var id = docs[0]._id;
         var home = process.env.HOME;
-        var coverageLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage';
+        var coverageLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branchresult + '/job-' + id +'/coverage';
         fs.readdir(coverageLocation, function (err, file) {
           var promises = [];
           var valid = [];
@@ -65,7 +63,6 @@ module.exports = {
             _.each(finalStrings, function (item) {
               fileStrings += item;
             });
-            // var anchor = /<a[\s]+[^>]*?href[\s]?=[\s\"\']*(.*?)[\"\']*.*?>([^<]+|.*?)?<\/a>/ig;
             var project = 'job-' + id;
             var pattern = new RegExp(project, 'g');
             var final = fileStrings.replace(pattern, '.');
