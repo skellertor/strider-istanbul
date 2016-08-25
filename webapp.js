@@ -44,10 +44,10 @@ module.exports = {
                 fs.readFile(src, function (err, data) {
                   var returnData = '';
                   switch(extension){
-                    case 'js':
+                    case '.js':
                       returnData = '<script>' + data + '</script>';
                       break;
-                    case 'css':
+                    case '.css':
                       returnData = '<style>' + data + '</style>';
                       break;
                     default:
