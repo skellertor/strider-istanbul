@@ -2,12 +2,14 @@
 var request = require('request');
 var fs = require('fs');
 var Job = require('../../lib/models/job');
+var location = __dirname;
 
 
 module.exports = {
   config: {},
   routes: function (app, context) {
     app.get('/report', function (req, res) {
+      console.log('Locatoin', location);
       var org = req.params.org;
       var repo = req.params.repo;
       var branch = req.query.branch;
