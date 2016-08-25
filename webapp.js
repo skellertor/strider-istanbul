@@ -41,7 +41,8 @@ module.exports = {
             var extension = item.substr(index, item.length);
             var temp = (function (src) {
               return new Promise(function (resolve, reject) {
-                fs.readFile(src, function (err, data) {
+                var filePath = coverageLocation + '/' + src;
+                fs.readFile(filePath, function (err, data) {
                   var returnData = '';
                   switch(extension){
                     case '.js':
