@@ -68,7 +68,11 @@ module.exports = {
             // var anchor = /<a[\s]+[^>]*?href[\s]?=[\s\"\']*(.*?)[\"\']*.*?>([^<]+|.*?)?<\/a>/ig;
             var project = 'job-' + id;
             var pattern = new RegExp(project, 'g');
-            var final = fileStrings.replace(pattern, '');
+            var final = fileStrings.replace(pattern, '.');
+            pattern = new RegExp('<a', 'g');
+            final = final.replace(pattern, '<p');
+            pattern = new RegExp('</a', 'g');
+            final = final.replace(pattern, '</p');
             res.send(final);
           });
         });
