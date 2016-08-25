@@ -23,8 +23,7 @@ module.exports = {
         var home = process.env.HOME;
         var coveragLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage/index.html';
         fs.readFile(coveragLocation, 'utf8', function (err, data) {
-          console.log(data, err);
-          res.send(data);
+          res.render(data);
         });
       });
       // request({url: jobsEndpoint}, function (er, response, body) {
