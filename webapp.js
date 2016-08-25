@@ -22,9 +22,9 @@ module.exports = {
       Job.find({ project: project, archived: null}, options, function(err, docs){
         var id = docs[0]._id;
         var home = process.env.HOME;
-        var coveragLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage';
-        fs.readdir(coveragLocation, 'utf8', function (err, data) {
-          res.send(data);
+        var coverageLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage';
+        fs.readdir(coverageLocation, 'utf8', function (err, file) {
+          res.send(file);
         });
       });
       // request({url: jobsEndpoint}, function (er, response, body) {
