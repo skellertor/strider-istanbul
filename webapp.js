@@ -26,18 +26,15 @@ module.exports = {
         var coverageLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage';
         fs.readdir(coverageLocation, function (err, file) {
           var promises = [];
-          var valid = _.map(file, function (item) {
+          var valid = [];
+          _.each(file, function (item) {
             var index = item.indexOf('.');
             if (index !== -1) {
               var extension = item.substr(index, item.length);
               if (extension === 'js' || extension === 'html' || extension === 'css') {
-                return item;
-              } else {
-                return;
-              }
-            } else {
-              return;
-            }
+                valid.push(item);
+              } 
+            } 
           });
           res.send(valid);
         });
