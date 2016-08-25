@@ -66,8 +66,9 @@ module.exports = {
               fileStrings += item;
             });
             // var anchor = /<a[\s]+[^>]*?href[\s]?=[\s\"\']*(.*?)[\"\']*.*?>([^<]+|.*?)?<\/a>/ig;
-            var project = '/job-' + id + '/ig';
-            var final = fileStrings.replace(project, '');
+            var project = 'job-' + id;
+            var pattern = new RegExp(project, 'g');
+            var final = fileStrings.replace(pattern, '');
             res.send(final);
           });
         });
