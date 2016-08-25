@@ -67,7 +67,7 @@ module.exports = {
             });
             // var anchor = /<a[\s]+[^>]*?href[\s]?=[\s\"\']*(.*?)[\"\']*.*?>([^<]+|.*?)?<\/a>/ig;
             var project = 'job-' + id;
-            var final = fileStrings.replace(project, '');
+            var final = fileStrings.replace(/project/ig, '');
             res.send(final);
           });
         });
