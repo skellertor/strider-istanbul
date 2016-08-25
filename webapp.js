@@ -65,8 +65,9 @@ module.exports = {
             _.each(finalStrings, function (item) {
               fileStrings += item;
             });
-            var anchor = /<a[\s]+[^>]*?href[\s]?=[\s\"\']*(.*?)[\"\']*.*?>([^<]+|.*?)?<\/a>/ig;
-            var final = fileStrings.replace(anchor, '<p>Test</p>');
+            // var anchor = /<a[\s]+[^>]*?href[\s]?=[\s\"\']*(.*?)[\"\']*.*?>([^<]+|.*?)?<\/a>/ig;
+            var project = 'job-' + id;
+            var final = fileStrings.replace(project, '');
             res.send(final);
           });
         });
