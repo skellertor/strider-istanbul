@@ -65,25 +65,12 @@ module.exports = {
             _.each(finalStrings, function (item) {
               fileStrings += item;
             });
+            var anchor = /<a[\s]+[^>]*?href[\s]?=[\s\"\']*(.*?)[\"\']*.*?>([^<]+|.*?)?<\/a>/ig;
+            fileStrings.replace(anchor, '<p>Test</p>');
             res.send(fileStrings);
           });
         });
       });
-      // request({url: jobsEndpoint}, function (er, response, body) {
-      //   var myCookie = request.cookie(response.headers['set-cookie'][0]);
-      //   var cookieJar = request.jar();
-      //   cookieJar.setCookie(myCookie, jobsEndpoint);
-      //   request({url: jobsEndpoint, jar: cookieJar}, function(err, response, body){
-      //     res.send(body);
-      //   });
-      // });
-
-      // res.json({user: req.session});
-
-      // res.json({yes: app});
-      // var jobsEndpoint = protocol + '://' + hostName + '/' + org + '/' + repo + '/jobs';
-      // console.log('BODY', body);
-      // var latestJobId = JSON.parse(body)[0];
     });
   },
   globalRoutes: function (app, context) {
