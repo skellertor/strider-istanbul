@@ -2,6 +2,7 @@
 var request = require('request');
 var fs = require('fs');
 var Job = require('../../lib/models/job');
+var _ = require('underscore');
 
 module.exports = {
   config: {},
@@ -21,9 +22,9 @@ module.exports = {
       Job.find({ project: project, archived: null}, options, function(err, docs){
         var id = docs[0]._id;
         var home = process.env.HOME;
-        var coveragLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage/index.html';
-        fs.readFile(coveragLocation, 'utf8', function (err, data) {
-          res.render(data);
+        var coveragLocation = home + '/.strider/data/'+ org + '-' + repo + '-' + branch + '/job-' + id +'/coverage';
+        fs.readdir(coveragLocation, 'utf8', function (err, data) {
+          res.send(data);
         });
       });
       // request({url: jobsEndpoint}, function (er, response, body) {
